@@ -14,19 +14,17 @@ datasource db {
 }
 
 model Rooms {
-  id          Int        @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   name        String
   description String
   price       Float
   location    String
   image_url   String
-  bookings    Bookings[]
 }
 
 model Bookings {
   id             Int      @id @default(autoincrement())
-  room           Rooms    @relation(fields: [roomId], references: [id])
-  roomId         Int
+  room_id        Int
   user_name      String
   check_in_date  DateTime
   check_out_date DateTime
