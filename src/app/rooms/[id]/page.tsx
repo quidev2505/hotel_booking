@@ -102,7 +102,7 @@ const RoomDetail: React.FC<RoomListProps> = ({ params }: any) => {
             <div className="mt-4 md:mt-0 ml-5">
               <div className="text-right">
                 <span className="text-3xl font-bold text-blue-700 ml-2">
-                  {room.price.toLocaleString()} đ
+                  {room.price.toLocaleString()} $
                 </span>
               </div>
               <div className="flex items-center justify-end mt-1">

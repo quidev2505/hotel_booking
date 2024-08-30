@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Search } from "lucide-react";
+import { DatePicker, Select } from "antd";
+import { BookingTimeContext } from "@/context/BookingTimeContext";
+
+const { RangePicker } = DatePicker;
 
 const SearchComponent = () => {
   const [activeTab, setActiveTab] = useState("Khách Sạn");
@@ -22,9 +26,50 @@ const SearchComponent = () => {
     console.log("Searching for:", { destination, checkIn, checkOut, guests });
   };
 
+  //Tính số đêm dựa vào ngày bắt đầu và ngày kết thúc
+  function calculateNights({ startDate, endDate }: any) {
+    // Chuyển đổi chuỗi ngày thành đối tượng Date
+    const start: any = new Date(startDate);
+    const end: any = new Date(endDate);
+
+    // Tính số mili giây giữa hai ngày
+    const millisecondsPerDay = 24 * 60 * 60 * 1000;
+    const differenceInMilliseconds = end - start;
+
+    // Tính số đêm
+    const nights = differenceInMilliseconds / millisecondsPerDay;
+
+    return nights;
+  }
+
+  const { bookingTime, changeBooking } = useContext(BookingTimeContext);
+
+  const [rangeTime, setRangeTime] = useState(1);
+  const [optionRoom, setOptionRoom] = useState("1");
+
+  const handleChangeTime = ({ date, dateString }: any) => {
+    const [startDate, endDate] = dateString;
+    const timeRange = calculateNights({ startDate, endDate });
+    setRangeTime(timeRange);
+
+    // Directly update bookingTime instead of creating a new array
+    bookingTime.timeRange = timeRange;
+    bookingTime.timeStart = startDate;
+    bookingTime.timeEnd = endDate;
+    changeBooking(bookingTime); // Pass the updated bookingTime object
+  };
+
+  const handleChangeSelect = (value: string) => {
+    setOptionRoom(value);
+
+    // Directly update bookingTime instead of creating a new array
+    bookingTime.optionRoom = value;
+    changeBooking(bookingTime); // Pass the updated bookingTime object
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 border-2">
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-between mb-6">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -39,7 +84,7 @@ const SearchComponent = () => {
           </button>
         ))}
       </div>
-      <form onSubmit={handleSearch} className="flex flex-wrap items-center">
+      <form onSubmit={handleSearch} className="flex items-center">
         <div className="w-full md:w-1/3 mb-4 md:mb-0 md:pr-2">
           <input
             type="text"
@@ -49,33 +94,25 @@ const SearchComponent = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
-        <div className="w-full md:w-1/6 mb-4 md:mb-0 md:px-1">
-          <input
-            type="date"
-            value={checkIn}
-            onChange={(e) => setCheckIn(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div className="w-full md:w-1/6 mb-4 md:mb-0 md:px-1">
-          <input
-            type="date"
-            value={checkOut}
-            onChange={(e) => setCheckOut(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
+        <RangePicker
+          onChange={(dates, dateString) =>
+            handleChangeTime({ dates, dateString })
+          }
+        />
         <div className="w-full md:w-1/4 mb-4 md:mb-0 md:px-1">
-          <select
-            value={guests}
-            onChange={(e) => setGuests(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-          >
-            <option>1 phòng, 2 Người Lớn, 0 Trẻ Em</option>
-            {/* Add more options as needed */}
-          </select>
+          <Select
+            defaultValue="1 phòng"
+            style={{ width: 120 }}
+            onChange={handleChangeSelect}
+            options={[
+              { value: 1, label: "1 phòng" },
+              { value: 2, label: "2 phòng" },
+              { value: 3, label: "3 phòng" },
+              { value: "disabled", label: "Disabled", disabled: true },
+            ]}
+          />
         </div>
-        <div className="w-full md:w-1/12 md:pl-2">
+        <div className="w-full md:w-1/5 md:pl-2">
           <button
             type="submit"
             className="w-full bg-blue-600 text-white p-2 rounded flex items-center justify-center"
@@ -85,6 +122,9 @@ const SearchComponent = () => {
           </button>
         </div>
       </form>
+      <div className="text-center">
+        <p>({rangeTime} đêm)</p>
+      </div>
     </div>
   );
 };

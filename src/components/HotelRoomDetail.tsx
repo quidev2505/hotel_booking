@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   HandCoins,
 } from "lucide-react";
+import Link from "next/link";
 
 const TypeRoom = () => {
   return <div>TypeRoom</div>;
@@ -118,7 +119,7 @@ const HotelRoomDetail = ({ scrollRef, room }: any) => {
                       <div className="space-y-2">
                         <div className="flex items-center">
                           <Utensils /> &nbsp;
-                          <span>Bữa sáng với giá 431.000đ (tùy chọn)</span>
+                          <span>Bữa sáng với giá 20 $ (tùy chọn)</span>
                           <Info className="w-4 h-4 ml-1 text-gray-400" />
                         </div>
                         <div className="flex items-center text-green-600">
@@ -131,7 +132,7 @@ const HotelRoomDetail = ({ scrollRef, room }: any) => {
                         </div>
                         <div className="flex items-center">
                           <HandCoins />
-                          <span>Thanh toán tại khách sạn</span>
+                          <span>Thanh toán trực tuyến</span>
                         </div>
                       </div>
                     </div>
@@ -154,22 +155,24 @@ const HotelRoomDetail = ({ scrollRef, room }: any) => {
                         </div>
                         <div className="mt-1">
                           <span className="line-through text-gray-400">
-                            4.797.527đ
+                            9.999 $
                           </span>
                           <span className="text-2xl font-bold ml-2">
-                            {room.price.toLocaleString()} đ
+                            {room.price.toLocaleString()} $
                           </span>
                         </div>
                         <div className="text-sm text-gray-600">
-                          Tổng giá: 6.812.000đ
+                          Tổng giá: {room.price.toLocaleString()} $
                         </div>
                         <div className="text-sm text-gray-600">
-                          1 phòng x 2 đêm bao gồm thuế
+                          1 phòng x 1 đêm bao gồm thuế
                         </div>
                         <div className="mt-2">
-                          <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            Đặt
-                          </button>
+                          <Link href={`/bookings/${room.id}`}>
+                            <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                              Đặt
+                            </button>
+                          </Link>
                         </div>
                         <div className="text-sm text-red-600 mt-1">
                           Chỉ còn 5 phòng
@@ -188,7 +191,7 @@ const HotelRoomDetail = ({ scrollRef, room }: any) => {
                       <div className="space-y-2">
                         <div className="flex items-center">
                           <Utensils /> &nbsp;
-                          <span>Bữa sáng với giá 431.000đ (tùy chọn)</span>
+                          <span>Bữa sáng với giá 20 $ (tùy chọn)</span>
                           <Info className="w-4 h-4 ml-1 text-gray-400" />
                         </div>
                         <div className="flex items-center text-green-600">
@@ -224,22 +227,24 @@ const HotelRoomDetail = ({ scrollRef, room }: any) => {
                         </div>
                         <div className="mt-1">
                           <span className="line-through text-gray-400">
-                            4.797.527đ
+                            9.999 $
                           </span>
                           <span className="text-2xl font-bold ml-2">
-                            {room.price.toLocaleString()} đ
+                            {room.price.toLocaleString()} $
                           </span>
                         </div>
                         <div className="text-sm text-gray-600">
-                          Tổng giá: 6.812.000đ
+                          Tổng giá: {room.price.toLocaleString()} $
                         </div>
                         <div className="text-sm text-gray-600">
-                          1 phòng x 2 đêm bao gồm thuế
+                          1 phòng x 1 đêm bao gồm thuế
                         </div>
                         <div className="mt-2">
-                          <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            Đặt
-                          </button>
+                          <Link href={`/bookings/${room.id}`}>
+                            <button className="bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                              Đặt
+                            </button>
+                          </Link>
                         </div>
                         <div className="text-sm text-red-600 mt-1">
                           Chỉ còn 5 phòng
