@@ -16,14 +16,14 @@ const SearchComponent = () => {
     "Combo Tiết Kiệm",
   ];
 
-  const handleSearch = (e) => {
+  const handleSearch = ({ e }: any) => {
     e.preventDefault();
     // Implement search logic here
     console.log("Searching for:", { destination, checkIn, checkOut, guests });
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 border-2">
       <div className="flex justify-between mb-4">
         {tabs.map((tab) => (
           <button
