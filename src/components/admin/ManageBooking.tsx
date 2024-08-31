@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { PopconfirmProps } from "antd";
-import { Button, message, Popconfirm } from "antd";
+import { Button, Popconfirm } from "antd";
 import Alert from "../Alert";
 import Link from "next/link";
 
@@ -40,7 +40,7 @@ const ManageBooking = ({ bookings }: any) => {
     }
   };
 
-  const cancel: PopconfirmProps["onCancel"] = (e) => {
+  const cancel: PopconfirmProps["onCancel"] = () => {
     setMessage("Cancel booking fail");
     setType("fail");
     setShowAlert(true);

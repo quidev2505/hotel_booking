@@ -1,9 +1,6 @@
 "use client";
-import Alert from "@/components/Alert";
 import BackPage from "@/components/BackPage";
-import { BookingTimeContext } from "@/context/BookingTimeContext";
-import Image from "next/image";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const BookingDetail = ({ params }: any) => {
   const id = params.id;

@@ -17,7 +17,6 @@ export default function BookRoom({ bookingTime, room }: any) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Inputs>();
 

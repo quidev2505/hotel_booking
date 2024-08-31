@@ -8,10 +8,6 @@ const { RangePicker } = DatePicker;
 const SearchComponent = () => {
   const [activeTab, setActiveTab] = useState("Khách Sạn");
   const [destination, setDestination] = useState("");
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("1 phòng, 2 Người Lớn, 0 Trẻ Em");
-
   const tabs = [
     "Khách Sạn",
     "Vé Máy bay",
@@ -22,8 +18,6 @@ const SearchComponent = () => {
 
   const handleSearch = ({ e }: any) => {
     e.preventDefault();
-    // Implement search logic here
-    console.log("Searching for:", { destination, checkIn, checkOut, guests });
   };
 
   //Tính số đêm dựa vào ngày bắt đầu và ngày kết thúc
@@ -47,7 +41,7 @@ const SearchComponent = () => {
   const [rangeTime, setRangeTime] = useState(1);
   const [optionRoom, setOptionRoom] = useState("1");
 
-  const handleChangeTime = ({ date, dateString }: any) => {
+  const handleChangeTime = ({ dateString }: any) => {
     const [startDate, endDate] = dateString;
     const timeRange = calculateNights({ startDate, endDate });
     setRangeTime(timeRange);
@@ -103,6 +97,7 @@ const SearchComponent = () => {
           <Select
             defaultValue="1 phòng"
             style={{ width: 120 }}
+            value={optionRoom}
             onChange={handleChangeSelect}
             options={[
               { value: 1, label: "1 phòng" },

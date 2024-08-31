@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 import { NextResponse } from 'next/server';
 
@@ -14,6 +13,7 @@ export async function GET() {
       },
     });
   } catch (error) {
+    console.log(error)
     return new Response(JSON.stringify({ error: 'Failed to fetch rooms' }), {
       status: 500,
       headers: {

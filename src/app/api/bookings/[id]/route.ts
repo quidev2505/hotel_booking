@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -62,6 +61,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
       });
     }
   } catch (error) {
+    console.log(error)
     return new Response(JSON.stringify({ error: 'Failed to fetch booking details' }), {
       status: 500,
       headers: {

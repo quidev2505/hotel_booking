@@ -17,10 +17,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const TypeRoom = () => {
-  return <div>TypeRoom</div>;
-};
-
 const HotelRoomDetail = ({ scrollRef, room }: any) => {
   return (
     <div
