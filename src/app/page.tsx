@@ -1,19 +1,24 @@
 "use client";
-import React, { cache, Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Loading from "./loading";
 import RoomList from "@/components/Roomlists";
-const fetchRooms = cache(async () => {
-  try {
-    const response = await fetch("/api/rooms/");
-    const data = await response.json();
-    return data;
-  } catch (e) {
-    console.log(e);
-  }
-});
 
 const HomePage: React.FC = async () => {
-  const rooms = await fetchRooms();
+  const [rooms, setRooms] = useState(null);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await fetch("/api/rooms/");
+        const data = await response.json();
+        setRooms(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchRooms();
+    return () => {};
+  }, []);
 
   if (!rooms) return <div>Loading...</div>;
 
