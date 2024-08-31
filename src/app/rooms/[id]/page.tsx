@@ -16,19 +16,7 @@ import {
 import Image from "next/image";
 import HotelRoomDetail from "@/components/HotelRoomDetail";
 
-interface Room {
-  id: number;
-  name: string;
-  price: number;
-  location: string;
-  image_url: string;
-}
-
-interface RoomListProps {
-  rooms: Room;
-}
-
-const RoomDetail: React.FC<RoomListProps> = ({ params }: any) => {
+const RoomDetail = ({ params }: any) => {
   const id = params.id;
   const [room, setRoom]: any = useState(null);
   const [readMore, setReadMore] = useState(false);

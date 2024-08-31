@@ -90,7 +90,7 @@ export default function BookRoom({ bookingTime, room }: any) {
               />
               {errors.firstNameRequired && (
                 <span className="mt-2 text-red-600 italic">
-                  This field is required
+                  Tên không được để trống
                 </span>
               )}
             </div>
@@ -111,7 +111,7 @@ export default function BookRoom({ bookingTime, room }: any) {
               />
               {errors.lastNameRequired && (
                 <span className="mt-2 text-red-600 italic">
-                  This field is required
+                  Họ không được để trống
                 </span>
               )}
             </div>
@@ -126,7 +126,7 @@ export default function BookRoom({ bookingTime, room }: any) {
                 type="email"
                 id="email"
                 {...register("emailRequired", {
-                  required: "Email Address is required",
+                  required: "Email không được để trống",
                 })}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none   
  focus:shadow-outline"
@@ -149,7 +149,7 @@ export default function BookRoom({ bookingTime, room }: any) {
                 type="text"
                 id="phonenumber"
                 {...register("phoneNumberRequired", {
-                  required: "Phone Number is required",
+                  required: "Số điện thoại không được để trống",
                 })}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none   
  focus:shadow-outline"
