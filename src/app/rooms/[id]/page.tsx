@@ -121,7 +121,7 @@ const RoomDetail: React.FC<RoomListProps> = ({ params }: any) => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {[...Array(4)].map((_, i) => (
-              <div className="w-full relative pt-[100%]">
+              <div className="w-full relative pt-[100%]" key={i}>
                 <Image
                   src={room.image_url}
                   alt={room.name}

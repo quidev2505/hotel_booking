@@ -3,11 +3,6 @@ import React, { useState, useEffect, cache, Suspense } from "react";
 import RoomList from "../../components/Roomlists";
 import Loading from "../loading";
 
-/**
- * Component hiển thị danh sách phòng.
- *
- * @returns {React.FC} Component danh sách phòng.
- */
 const HomePage: React.FC = () => {
   const [rooms, setRooms] = useState([]);
   const [error, setError] = useState(null);
@@ -22,6 +17,7 @@ const HomePage: React.FC = () => {
       const data = await response.json();
       setRooms(data);
     } catch (e) {
+      console.log(e);
       setError(error);
     }
   });

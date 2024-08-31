@@ -26,6 +26,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
       });
     }
   } catch (error) {
+    console.log(error)
     return new Response(JSON.stringify({ error: 'Failed to fetch room details' }), {
       status: 500,
       headers: {
