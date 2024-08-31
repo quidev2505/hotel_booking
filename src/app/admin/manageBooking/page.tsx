@@ -5,18 +5,18 @@ const AdminBookingsPage = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
+    const fetchBookings = cache(async () => {
+      try {
+        const response = await fetch("/api/bookings/");
+        const data = await response.json();
+        setBookings(data);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
     fetchBookings();
   }, []);
-
-  const fetchBookings = cache(async () => {
-    try {
-      const response = await fetch("/api/bookings/");
-      const data = await response.json();
-      setBookings(data);
-    } catch (e) {
-      console.log(e);
-    }
-  });
 
   return (
     <div className="container mx-auto p-4">

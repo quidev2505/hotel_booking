@@ -8,19 +8,19 @@ const HomePage: React.FC = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchRooms();
-  }, []);
+    const fetchRooms = cache(async () => {
+      try {
+        const response = await fetch("/api/rooms/");
+        const data = await response.json();
+        setRooms(data);
+      } catch (e) {
+        console.log(e);
+        setError(error);
+      }
+    });
 
-  const fetchRooms = cache(async () => {
-    try {
-      const response = await fetch("/api/rooms/");
-      const data = await response.json();
-      setRooms(data);
-    } catch (e) {
-      console.log(e);
-      setError(error);
-    }
-  });
+    fetchRooms();
+  }, [error]);
 
   if (error) {
     return <div>Đã xảy ra lỗi: {error}</div>;
