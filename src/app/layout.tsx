@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import { BookingTimeProvider } from "../context/BookingTimeContext";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="bg-white flex min-h-full flex-col items-center justify-between sm:p-24 pt-4 sm:pt-1">
+          <Suspense fallback={<Loading />}>
+            <BookingTimeProvider>
+              <Header />
+              <div className="bg-[#f0f2f5] w-full mt-2 rounded-md p-3">
+                {children}
+              </div>
+            </BookingTimeProvider>
+          </Suspense>
+        </div>
+      </body>
     </html>
   );
 }
