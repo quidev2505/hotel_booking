@@ -3,6 +3,13 @@ import Link from "next/link";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
+/**
+ * Component hiển thị danh sách phòng.
+ *
+ * @returns {React.FC} Component danh sách phòng.
+ * @param {string} a Tham số từ component cha - dữ liệu mảng các phòng
+ */
+
 interface Room {
   id: number;
   name: string;
@@ -40,7 +47,7 @@ const RoomList: React.FC<RoomListProps> = ({ rooms }) => {
                 <h3 className="text-lg font-semibold">{room.name}</h3>
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} fill="5" />
+                    <Star key={i} size={16} fill="5" stroke="xl" />
                   ))}
                 </div>
               </div>
