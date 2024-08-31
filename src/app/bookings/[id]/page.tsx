@@ -4,7 +4,6 @@ import { BookingTimeContext } from "@/context/BookingTimeContext";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";
 import BookRoom from "../../../components/booking/BookRoom";
-import Header from "@/components/Header";
 
 const BookingForm = ({ params }: any) => {
   const id = params.id;

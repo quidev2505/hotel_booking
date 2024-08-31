@@ -2,8 +2,6 @@
 import ManageBooking from "@/components/admin/ManageBooking";
 import React, { cache, useEffect, useState } from "react";
 const AdminBookingsPage = () => {
-  const [selectedBooking, setSelectedBooking] = useState(null);
-
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
@@ -25,13 +23,7 @@ const AdminBookingsPage = () => {
       <h1 className="text-3xl font-bold mb-4 text-center text-blue-500">
         Admin Booking Management
       </h1>
-      {bookings.length > 0 ? (
-        <ManageBooking bookings={bookings} />
-      ) : (
-        <h2 className="text-center font-bold text-red-400">
-          Do not have any row bookings
-        </h2>
-      )}
+      <ManageBooking bookings={bookings} />
     </div>
   );
 };

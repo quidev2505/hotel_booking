@@ -29,6 +29,12 @@ export default function BookRoom({ bookingTime, room }: any) {
         user_name: username,
         check_in_date: bookingTime.timeStart,
         check_out_date: bookingTime.timeEnd,
+        firstname: data.firstNameRequired,
+        lastname: data.lastNameRequired,
+        email: data.emailRequired,
+        phoneNumber: data.phoneNumberRequired,
+        total: bookingTime.optionRoom * bookingTime.timeRange * room.price,
+        typeRoom: bookingTime.optionRoom,
       };
 
       const response = await fetch("/api/bookings", {

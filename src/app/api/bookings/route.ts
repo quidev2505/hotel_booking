@@ -26,7 +26,10 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    const { room_id, user_name, check_in_date, check_out_date } = await req.json();
+    const { room_id, user_name, check_in_date, check_out_date,
+      firstname, lastname, email, phoneNumber, total,
+      typeRoom
+    } = await req.json();
 
     const newBooking = await prisma.bookings.create({
       data: {
@@ -34,9 +37,23 @@ export async function POST(req: Request) {
         user_name,
         check_in_date: new Date(check_in_date),
         check_out_date: new Date(check_out_date),
-        status: 'success'
+        status: 'success',
+        detail_booking: {
+          create: [
+            {
+              firstname,
+              lastname,
+              email,
+              phoneNumber,
+              total,
+              typeRoom
+            }
+          ]
+        }
       }
     });
+
+
 
     return NextResponse.json(newBooking, { status: 200 });
   } catch (error) {

@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect, cache } from "react";
+import React, { useState, useEffect, cache, Suspense } from "react";
 import RoomList from "../../components/Roomlists";
 import Header from "@/components/Header";
+import Loading from "../loading";
 
 const HomePage: React.FC = () => {
   const [rooms, setRooms] = useState([]);
@@ -24,9 +25,11 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
-        <RoomList rooms={rooms} />
-      </div>
+      <Suspense fallback={<Loading />}>
+        <div className="container mx-auto px-4 py-8">
+          <RoomList rooms={rooms} />
+        </div>
+      </Suspense>
     </>
   );
 };

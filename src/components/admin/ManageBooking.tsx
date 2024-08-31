@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import type { PopconfirmProps } from "antd";
 import { Button, message, Popconfirm } from "antd";
 import Alert from "../Alert";
+import Link from "next/link";
 
 const ManageBooking = ({ bookings }: any) => {
-  if (!bookings) return <div>Loading...</div>;
-
   const [type, setType] = useState("");
   const [message, setMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
@@ -63,47 +62,50 @@ const ManageBooking = ({ bookings }: any) => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking: any) => (
-            <tr key={booking.id} className="border-b">
-              <td className="py-2 px-4">{booking.id}</td>
-              <td className="py-2 px-4">{booking.room_id}</td>
-              <td className="py-2 px-4">{booking.user_name}</td>
-              <td className="py-2 px-4">
-                {booking.check_in_date.split("T")[0]}
-              </td>
-              <td className="py-2 px-4">
-                {booking.check_out_date.split("T")[0]}
-              </td>
-              <td className="py-2 px-4">
-                <span
-                  className={`px-2 py-1 rounded-full text-xs cursor-pointer ${
-                    booking.status === "success"
-                      ? "bg-green-200 text-green-800"
-                      : "bg-red-200 text-red-800"
-                  }`}
-                >
-                  {booking.status}
-                </span>
-                <Popconfirm
-                  className="ml-4"
-                  title="Change status booking"
-                  description="Do you want to change status booking?"
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  onOpenChange={() => setBookingId(booking.id)}
-                  okText="Yes"
-                  cancelText="No"
-                >
-                  <Button danger>Delete</Button>
-                </Popconfirm>
-              </td>
-              <td className="py-2 px-4">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600">
-                  View Details
-                </button>
-              </td>
-            </tr>
-          ))}
+          {bookings.length > 0 &&
+            bookings.map((booking: any) => (
+              <tr key={booking.id} className="border-b">
+                <td className="py-2 px-4">{booking.id}</td>
+                <td className="py-2 px-4">{booking.room_id}</td>
+                <td className="py-2 px-4">{booking.user_name}</td>
+                <td className="py-2 px-4">
+                  {booking.check_in_date.split("T")[0]}
+                </td>
+                <td className="py-2 px-4">
+                  {booking.check_out_date.split("T")[0]}
+                </td>
+                <td className="py-2 px-4">
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs cursor-pointer ${
+                      booking.status === "success"
+                        ? "bg-green-200 text-green-800"
+                        : "bg-red-200 text-red-800"
+                    }`}
+                  >
+                    {booking.status}
+                  </span>
+                  <Popconfirm
+                    className="ml-4"
+                    title="Change status booking"
+                    description="Do you want to change status booking?"
+                    onConfirm={confirm}
+                    onCancel={cancel}
+                    onOpenChange={() => setBookingId(booking.id)}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <Button danger>Delete</Button>
+                  </Popconfirm>
+                </td>
+                <td className="py-2 px-4">
+                  <Link href={`/admin/manageBooking/${booking.id}`}>
+                    <button className="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600">
+                      View Details
+                    </button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
