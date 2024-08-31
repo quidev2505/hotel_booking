@@ -38,7 +38,6 @@ const RoomDetail: React.FC<RoomListProps> = ({ params }: any) => {
       if (id) {
         const res = await fetch(`/api/rooms/${id}`);
         const data = await res.json();
-        console.log(data);
         setRoom(data);
       }
     };

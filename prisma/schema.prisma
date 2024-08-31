@@ -23,10 +23,23 @@ model Rooms {
 }
 
 model Bookings {
-  id             Int      @id @default(autoincrement())
+  id             Int             @id @default(autoincrement())
   room_id        Int
   user_name      String
   check_in_date  DateTime
   check_out_date DateTime
+  detail_booking DetailBooking[]
   status         String
+}
+
+model DetailBooking {
+  id          Int       @id @default(autoincrement())
+  firstname   String
+  lastname    String
+  email       String
+  phoneNumber String
+  total       Float
+  typeRoom    Int
+  Bookings    Bookings? @relation(fields: [bookingsId], references: [id])
+  bookingsId  Int?
 }

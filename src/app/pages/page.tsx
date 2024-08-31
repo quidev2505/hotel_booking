@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, cache } from "react";
 import RoomList from "../../components/Roomlists";
+import Header from "@/components/Header";
 
 const HomePage: React.FC = () => {
   const [rooms, setRooms] = useState([]);
@@ -22,9 +23,11 @@ const HomePage: React.FC = () => {
   if (!rooms) return <div>Loading...</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <RoomList rooms={rooms} />
-    </div>
+    <>
+      <div className="container mx-auto px-4 py-8">
+        <RoomList rooms={rooms} />
+      </div>
+    </>
   );
 };
 
