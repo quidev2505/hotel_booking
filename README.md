@@ -17,11 +17,12 @@
 - Database: PostgreSQL
 - ORM: Prisma
 
+### Để truy cập admin panel: [https://hotelroom.vercel.app/admin/manageBooking]
+
 ## Thiết kế hệ thống
 
 ### Sơ đồ kiến trúc hệ thống
-
-image.png
+![image](https://github.com/user-attachments/assets/045459ac-512f-4c53-a1a0-fe7088092f24)
 
 ### Giải thích luồng dữ liệu
 
